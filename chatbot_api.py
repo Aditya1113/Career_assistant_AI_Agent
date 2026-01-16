@@ -3,6 +3,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from openai import OpenAI
 from supabase import create_client
+import requests
 import json
 import os
 from pypdf import PdfReader
@@ -12,6 +13,24 @@ load_dotenv(override=True)
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React frontend
 
+
+def push(text: str):
+    token = os.getenv("PUSHOVER_TOKEN")
+    user = os.getenv("PUSHOVER_USER")
+
+    # If not configured, do nothing (so app doesn't break)
+    if not token or not user:
+        return
+
+    try:
+        requests.post(
+            "https://api.pushover.net/1/messages.json",
+            data={"token": token, "user": user, "message": text},
+            timeout=5
+        )
+    except Exception as e:
+        # Don't crash the request just because notifications failed
+        print(f"⚠ Pushover push failed: {e}")
 
 class RAGRetriever:
     """Handles vector embeddings and similarity search"""
@@ -282,12 +301,14 @@ If the user is engaging in discussion and seems interested in collaboration or h
 
             # Route to appropriate tool handler
             if tool_name == "record_user_details":
+                push(f"Lead: name={arguments.get('name','')} email={arguments.get('email')} notes={arguments.get('notes','')}")
                 if self.supabase_enabled:
                     result = self.db.record_user_details(user_id, **arguments)
                 else:
                     print(f"📧 Lead captured: {arguments}")
                     result = {"recorded": "ok", "note": "Logged locally (Supabase disabled)"}
             elif tool_name == "record_unknown_question":
+                push(f"❓ Unknown question: {arguments.get('question')}")
                 if self.supabase_enabled:
                     result = self.db.record_unknown_question(**arguments)
                 else:
