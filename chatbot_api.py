@@ -184,7 +184,10 @@ class AdityaChatbot:
     def _load_resume(self):
         """Load resume from PDF"""
         try:
-            reader = PdfReader("../../Resume.pdf")
+            # Use path relative to this script's location
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            resume_path = os.path.join(base_dir, "Resume.pdf")
+            reader = PdfReader(resume_path)
             resume = ""
             for page in reader.pages:
                 text = page.extract_text()
@@ -198,7 +201,10 @@ class AdityaChatbot:
     def _load_summary(self):
         """Load summary from text file"""
         try:
-            with open("../../summary.txt", "r", encoding="utf-8") as f:
+            # Use path relative to this script's location
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            summary_path = os.path.join(base_dir, "summary.txt")
+            with open(summary_path, "r", encoding="utf-8") as f:
                 return f.read()
         except Exception as e:
             print(f"Error reading summary.txt: {e}")
@@ -372,4 +378,6 @@ def health():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001, host='127.0.0.1')
+    # Use environment variable for port (Render uses PORT env var)
+    port = int(os.getenv('PORT', 5001))
+    app.run(debug=False, port=port, host='0.0.0.0')
