@@ -1,0 +1,9 @@
+I’m a Mobile App Developer with 2+ years of experience building scalable cross-platform applications using React Native, TypeScript, and Firebase. Previously, I worked at a fast-growing startup where I delivered end-to-end mobile features impacting thousands of users.
+
+Currently pursuing my MSc in Computer Science at the University of Edinburgh, I’m exploring advanced mobile architectures, performance optimisation, and cloud integrations.
+
+I enjoy solving real-world problems through clean, user-focused mobile experiences and am actively building portfolio apps (AI-powered tools, e-commerce, chat applications) published on Play Store & App Store.
+
+Tech Stack: React Native, TypeScript, Redux, Node.js, Firebase, AWS, CI/CD (GitHub Actions, Fastlane).
+
+Actively open to opportunities in the UK for mobile developer roles where I can contribute to impactful products and continue growing as an engineer.I’m a Mobile App Developer with 2+ years of experience building scalable cross-platform applications using React Native, TypeScript, and Firebase. Previously, I worked at a fast-growing startup where I delivered end-to-end mobile features impacting thousands of users. Currently pursuing my MSc in Computer Science at the University of Edinburgh, I’m exploring advanced mobile architectures, performance optimisation, and cloud integrations. I enjoy solving real-world problems through clean, user-focused mobile experiences and am actively building portfolio apps (AI-powered tools, e-commerce, chat applications) published on Play Store & App Store. Tech Stack: React Native, TypeScript, Redux, Node.js, Firebase, AWS, CI/CD (GitHub Actions, Fastlane). Actively open to opportunities in the UK for mobile developer roles where I can contribute to impactful products and continue growing as an engineer.
